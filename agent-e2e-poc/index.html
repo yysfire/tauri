@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agent E2E PoC</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <h1 data-testid="title">Agent E2E PoC</h1>
+      <p class="hint">A tiny Tauri app designed to be driven and verified by an AI agent.</p>
+
+      <section class="card">
+        <div class="label">Counter · state lives in Rust</div>
+        <div class="count" data-testid="count">0</div>
+        <div class="actions">
+          <button data-testid="inc">+1</button>
+          <button data-testid="reset" class="secondary">Reset</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <label class="label" for="name">Name</label>
+        <input data-testid="name" id="name" placeholder="Type a name" />
+        <div class="greeting" data-testid="greeting">Hello, stranger</div>
+      </section>
+
+      <footer class="statusbar">
+        <span>last action: <b data-testid="last-action">none</b></span>
+        <span data-testid="app-ready">booting</span>
+      </footer>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

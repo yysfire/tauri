@@ -1,0 +1,1 @@
+{"default":{"identifier":"default","description":"Default capability for the minimal Agent E2E PoC window","local":true,"windows":["main"],"permissions":["core:default","core:window:default","wdio:default","wdio-webdriver:default"]}}
