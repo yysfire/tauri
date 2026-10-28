@@ -1,0 +1,1 @@
+This file stands in for whatever the OS file picker would return during E2E runs.

@@ -58,6 +58,17 @@ describe('agent-e2e-poc', () => {
     expect(state.last_action).toBe('set_name')
   })
 
+  it('replaces the native file picker with a deterministic test double', async () => {
+    const expected = path.resolve('fixtures/sample.txt')
+
+    await $('[data-testid="pick"]').click()
+    await expect($('[data-testid="picked"]')).toHaveText(expected)
+
+    const state = await readState()
+    expect(state.picked_file).toBe(expected)
+    expect(state.last_action).toBe('pick_file')
+  })
+
   it('intercepts an app-initiated IPC call without touching real state', async () => {
     const mock = await browser.tauri.mock('increment')
     await mock.mockReturnValue(42)

@@ -38,6 +38,7 @@ async function syncMeta() {
   const state = await invoke('debug_state')
   q('last-action').textContent = state.last_action || 'none'
   q('greeting').textContent = state.name ? `Hello, ${state.name}` : 'Hello, stranger'
+  q('picked').textContent = state.picked_file ?? 'no file'
   window.__APP_STATE__ = state
 }
 
@@ -74,6 +75,8 @@ async function boot() {
     const name = await act('set_name', () => invoke('set_name', { name: event.target.value }))
     if (name !== null) q('greeting').textContent = `Hello, ${name}`
   })
+
+  q('pick').addEventListener('click', () => act('pick_file', () => invoke('pick_file')))
 
   const state = await invoke('debug_state')
   setCount(state.count)

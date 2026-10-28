@@ -1,4 +1,8 @@
+import { fileURLToPath } from 'node:url'
+
 const binaryPath = './src-tauri/target/debug/agent-e2e-poc'
+// Deterministic stand-in for the OS file picker; read by the app in wdio builds.
+const fixturePath = fileURLToPath(new URL('./fixtures/sample.txt', import.meta.url))
 
 export const config = {
   runner: 'local',
@@ -29,6 +33,7 @@ export const config = {
       '@wdio/tauri-service',
       {
         appBinaryPath: binaryPath,
+        appArgs: [`--fake-file=${fixturePath}`],
         driverProvider: 'embedded',
         embeddedPort: 4445,
         startTimeout: 90000,
