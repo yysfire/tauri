@@ -1,0 +1,41 @@
+{
+  "name": "tauri-agent-e2e",
+  "version": "0.1.0",
+  "description": "Agent-driven end-to-end verification for Tauri desktop apps: contracts, harness, CI and exploratory MCP tools.",
+  "author": {
+    "name": "Trae"
+  },
+  "license": "MIT",
+  "keywords": [
+    "tauri",
+    "e2e",
+    "testing",
+    "agent",
+    "webdriver",
+    "mcp"
+  ],
+  "instructions": "INSTRUCTIONS.md",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Tauri Agent E2E",
+    "shortDescription": "Agent-driven E2E verification for Tauri apps",
+    "longDescription": "Set up and run end-to-end verification that an AI agent can drive autonomously: structured state, deterministic test doubles, embedded WebDriver, evidence bundles, CI, and MCP tools for exploratory debugging.",
+    "developerName": "Trae",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Set up agent-driven E2E verification for this Tauri app",
+      "Run the E2E suite and summarize the failures",
+      "Explore the running Tauri app through MCP"
+    ],
+    "brandColor": "#4B3FE3",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/icon.svg",
+    "screenshots": []
+  }
+}

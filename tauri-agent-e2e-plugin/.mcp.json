@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "tauri-e2e": {
+      "command": "node",
+      "args": ["mcp/server.mjs"]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "identifier": "default",
+  "description": "Default window capability; wdio permissions are only usable when the plugins are registered (test builds).",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "core:window:default",
+    "wdio:default",
+    "wdio-webdriver:default"
+  ]
+}
