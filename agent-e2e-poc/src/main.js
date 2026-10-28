@@ -5,11 +5,24 @@ const q = (id) => document.querySelector(`[data-testid="${id}"]`)
 // never ships the automation surface.
 const wdioEnabled = import.meta.env.MODE === 'wdio'
 
+// Tauri freezes every namespace on the global API, so the WDIO plugin cannot
+// defineProperty its invoke interceptor on `window.__TAURI__.core` — mocks
+// silently fall through to the real backend. `window.__TAURI__` itself is a
+// plain object, so swapping in a writable shallow clone restores interception
+// for application-initiated invokes.
+function unfreezeTauriCore() {
+  const api = window.__TAURI__
+  if (!api?.core || !Object.isFrozen(api.core)) return false
+  api.core = { ...api.core }
+  return true
+}
+
 async function loadWdioBridge() {
   if (!wdioEnabled) return
   try {
+    const patched = unfreezeTauriCore()
     await import('@wdio/tauri-plugin')
-    console.info('[poc] wdio bridge ready')
+    console.info(`[poc] wdio bridge ready (core unfrozen: ${patched})`)
   } catch (error) {
     console.warn('[poc] wdio bridge unavailable', error)
   }

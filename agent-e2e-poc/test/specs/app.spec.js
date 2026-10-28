@@ -58,15 +58,14 @@ describe('agent-e2e-poc', () => {
     expect(state.last_action).toBe('set_name')
   })
 
-  it('mocks an IPC command from the test without touching real state', async () => {
+  it('intercepts an app-initiated IPC call without touching real state', async () => {
     const mock = await browser.tauri.mock('increment')
     await mock.mockReturnValue(42)
 
-    // The mock routes calls made inside browser.tauri.execute().
-    const mocked = await browser.tauri.execute(async ({ core }) =>
-      core.invoke('increment')
-    )
-    expect(mocked).toBe(42)
+    // This click goes through the application's own invoke path, not through
+    // browser.tauri.execute() — the real interception scenario.
+    await $('[data-testid="inc"]').click()
+    await expect($('[data-testid="count"]')).toHaveText('42')
     expect(mock.calls.length).toBeGreaterThan(0)
 
     // Rust state must be untouched by the interception.
